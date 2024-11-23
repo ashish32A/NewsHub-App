@@ -48,7 +48,7 @@ class _TrendingcardState extends State<Trendingcard> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20.0),
                     child: Image.network(
-                      widget.imageUrl ,
+                      widget.imageUrl  ,
                       fit: BoxFit.cover,
                       
                     ),

@@ -14,6 +14,15 @@ class Newsdetails extends StatefulWidget {
 class _NewsdetailsState extends State<Newsdetails> {
   @override
   Widget build(BuildContext context) {
+    // Check if news is null or any key is missing
+    // ignore: unnecessary_null_comparison
+    if (widget.news == null) {
+      return Scaffold(
+        appBar: AppBar(title: const Text("Error")),
+        body: const Center(child: Text("News details are not available")),
+      );
+    }
+
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -38,7 +47,11 @@ class _NewsdetailsState extends State<Newsdetails> {
                   const SizedBox(
                     width: 5.0,
                   ),
-                  const Text('Back'),
+                  InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Back')),
                 ],
               ),
               const SizedBox(
@@ -55,7 +68,8 @@ class _NewsdetailsState extends State<Newsdetails> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
                         child: Image.network(
-                          widget.news.urlToImage ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQsq1NacYKHKS-RudSBgbLZa_ndkD-lmmQfA&s",
+                          widget.news.urlToImage ??
+                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQsq1NacYKHKS-RudSBgbLZa_ndkD-lmmQfA&s",
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -80,7 +94,10 @@ class _NewsdetailsState extends State<Newsdetails> {
                     radius: 15,
                     backgroundColor: Colors.blue[700],
                     child: Text(
-                      widget.news.author[0]!,
+                      widget.news.author != null &&
+                              widget.news.author!.isNotEmpty
+                          ? widget.news.author![0]
+                          : '?',
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, color: Colors.white),
                     ),
@@ -104,13 +121,14 @@ class _NewsdetailsState extends State<Newsdetails> {
                 height: 20.0,
               ),
               Text(
-                widget.news.description!,
+                widget.news.description ?? "no desciption",
                 style: TextStyle(fontSize: 18, color: Colors.grey[800]),
               ),
               const SizedBox(height: 20.0),
               ElevatedButton(
                 onPressed: () {
-                  navigator!.push(MaterialPageRoute(builder: (context) {
+                  navigator!
+                      .pushReplacement(MaterialPageRoute(builder: (context) {
                     return ArticleVeiw(blogUrl: widget.news.url!);
                   }));
                 },

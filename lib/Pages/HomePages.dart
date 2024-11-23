@@ -36,7 +36,6 @@ class _HomepagesState extends State<Homepages> {
       )),
       floatingActionButton: const Bottomnav(),
       body: SingleChildScrollView(
-      
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
@@ -53,28 +52,37 @@ class _HomepagesState extends State<Homepages> {
                 height: 10.0,
               ),
               SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Obx(
-                    () => newscontroller.isTrendingLoading.value
-                        ? const CircularProgressIndicator()
-                        : Row(
-                            children: newscontroller.trendingNewsList
-                                .map(
-                                  (e) => Trendingcard(
-                                      ontap: () {
-                                        Get.to(Newsdetails(
-                                          news: e,
-                                        ));
-                                      },
-                                      imageUrl: e.urlToImage ??
-                                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQsq1NacYKHKS-RudSBgbLZa_ndkD-lmmQfA&s",
-                                      tag: "Trending 1",
-                                      time: e.publishedAt!,
-                                      title: e.title!,
-                                      author: e.author ?? "UnKnown"),
-                                )
-                                .toList()),
-                  )),
+                scrollDirection: Axis.horizontal,
+                child: Obx(
+                  () {
+                    if (newscontroller.isTrendingLoading.value) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+
+                    return Row(
+                      children: newscontroller.trendingNewsList.map((newsItem) {
+                        return Trendingcard(
+                          ontap: () {
+                            if (newsItem != null) {
+                              Get.to(() => Newsdetails(news: newsItem));
+                            } else {
+                              Get.snackbar(
+                                  "Error", "News details are not available");
+                            }
+                          },
+                          imageUrl: newsItem.urlToImage ??
+                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQsq1NacYKHKS-RudSBgbLZa_ndkD-lmmQfA&s",
+                          tag:
+                              "Trending 1", // Assuming each news item has a unique ID
+                          time: newsItem.publishedAt!,
+                          title: newsItem.title!,
+                          author: newsItem.author ?? "Unknown",
+                        );
+                      }).toList(),
+                    );
+                  },
+                ),
+              ),
               const SizedBox(
                 height: 10.0,
               ),
@@ -91,10 +99,20 @@ class _HomepagesState extends State<Homepages> {
                     children: newscontroller.newsForyouList.map((e) {
                       if (newscontroller.isNewsForyouLoading.value) {
                         return const CircularProgressIndicator();
+                      }
+                      if (newscontroller.trendingNewsList.isEmpty) {
+                        return const Center(
+                            child: Text("No trending news available."));
                       } else {
                         return Newstile(
                           ontap: () {
-                            Get.to(() => Newsdetails(news: e));
+                            // ignore: unnecessary_null_comparison
+                            if (e != null) {
+                              Get.to(() => Newsdetails(news: e));
+                            } else {
+                              Get.snackbar(
+                                  "Error", "News details are not available");
+                            }
                           },
                           imageUrl: e.urlToImage ??
                               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQsq1NacYKHKS-RudSBgbLZa_ndkD-lmmQfA&s",

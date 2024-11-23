@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:newshub/Controller/homePageCntrl.dart';
+import 'package:newshub/Pages/LoginScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,11 +10,11 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'News App',
     
-      home:  Homepagecntrl(),
+      home:  LoginScreen(),
     );
   }
 }
