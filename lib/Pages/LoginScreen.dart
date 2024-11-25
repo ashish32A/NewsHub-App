@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
 import 'package:newshub/Controller/homePageCntrl.dart';
-import '../Controller/Login_Controller.dart';
 import 'SigupScreen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,6 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailInput = TextEditingController();
   TextEditingController passwordInput = TextEditingController();
   bool isloading = false;
+  bool obsecureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +44,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             return "Email is Required ";
                           }
                         },
-                        decoration: const InputDecoration(label: Text("Email")),
+                        decoration: const InputDecoration(
+                            label: Text("Email"),
+                            prefixIcon: const Icon(Icons.email_outlined)),
                       ),
                       const SizedBox(height: 20),
                       TextFormField(
@@ -56,9 +57,21 @@ class _LoginScreenState extends State<LoginScreen> {
                             return "Password is Required ";
                           }
                         },
-                        obscureText: true,
-                        decoration:
-                            const InputDecoration(label: Text("Password")),
+                        obscureText: obsecureText,
+                        decoration: InputDecoration(
+                          label: const Text("Password"),
+                          prefixIcon: const Icon(Icons.password_outlined),
+                          suffixIcon: IconButton(
+                            icon: Icon(obsecureText
+                                ? Icons.visibility_off
+                                : Icons.visibility),
+                            onPressed: () {
+                              setState(() {
+                                obsecureText = !obsecureText;
+                              });
+                            },
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 30),
                       Row(

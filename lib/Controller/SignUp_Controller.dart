@@ -14,8 +14,8 @@ class SignupController {
       {required context,
       required String email,
       required String password,
-      required String name,
-      required int number}) async {
+      required String name
+      }) async {
     try {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
@@ -23,7 +23,6 @@ class SignupController {
       var db = FirebaseFirestore.instance;
       Map<String, dynamic> data = {
         "name": name,
-        "mumber": number,
         "email": email,
         "id": userId.toString()
       };
