@@ -34,6 +34,7 @@ class _NewsdetailsState extends State<Newsdetails> {
                 height: 10.0,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   InkWell(
                     onTap: () {
@@ -41,17 +42,24 @@ class _NewsdetailsState extends State<Newsdetails> {
                     },
                     child: const Icon(
                       Icons.arrow_back_ios_new,
-                      size: 20,
+                      size: 24,
                     ),
                   ),
                   const SizedBox(
                     width: 5.0,
                   ),
                   InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text('Back')),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 10.0),
+                      child: Icon(
+                        Icons.bookmark_border_rounded,
+                        size: 28,
+                      ),
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(

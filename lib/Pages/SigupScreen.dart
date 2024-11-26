@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:newshub/Pages/LoginScreen.dart';
+import 'package:newshub/Pages/passForgot.dart';
 import '../Controller/SignUp_Controller.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -59,6 +60,11 @@ class _SignupScreenState extends State<SignupScreen> {
                           if (value == null || value.isEmpty) {
                             return "Email is Required ";
                           }
+                          final emailRegex =
+                              RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
+                          if (!emailRegex.hasMatch(value)) {
+                            return 'Enter a valid email address';
+                          }
                         },
                         decoration: const InputDecoration(
                             label: Text("Email"),
@@ -71,6 +77,9 @@ class _SignupScreenState extends State<SignupScreen> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Password is Required ";
+                          }
+                          if (value.length < 6) {
+                            return 'Password must be at least 6 characters';
                           }
                         },
                         obscureText: obsecureText,
@@ -89,7 +98,28 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 10.0),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Passwordforgot()),
+                          );
+                        },
+                        child: Container(
+                          alignment: Alignment.topRight,
+                          child: const Text(
+                            "Forgot Password?",
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Poppins'),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 25.0),
                       Row(
                         children: [
                           Expanded(
@@ -103,14 +133,13 @@ class _SignupScreenState extends State<SignupScreen> {
                                   if (userform.currentState!.validate()) {
                                     isloading = true;
                                     setState(() {});
-                                    // await SignupController.createAccount(
-                                    //     context: context,
-                                    //     email: emailInput.text,
-                                    //     password: passwordInput.text,
-                                    //     name: nameInput.text
-                                    //    );
-                                    // isloading = false;
-                                    // setState(() {});
+                                    await SignupController.createAccount(
+                                        context: context,
+                                        email: emailInput.text,
+                                        password: passwordInput.text,
+                                        name: nameInput.text);
+                                    isloading = false;
+                                    setState(() {});
                                   }
                                 },
                                 child: isloading

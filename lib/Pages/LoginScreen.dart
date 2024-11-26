@@ -1,6 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:newshub/Controller/Login_Controller.dart';
 import 'package:newshub/Controller/homePageCntrl.dart';
+import 'package:newshub/Pages/passForgot.dart';
+import 'package:provider/provider.dart';
+import '../Providers/UseProvider.dart';
 import 'SigupScreen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -16,6 +21,34 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordInput = TextEditingController();
   bool isloading = false;
   bool obsecureText = true;
+  var user = FirebaseAuth.instance.currentUser;
+
+  @override
+  // void initState() {
+  //   //check  user login status
+  //   Future.delayed(const Duration(seconds: 3), () {
+  //     if (user == null) {
+  //       openLogin();
+  //     } else {
+  //       openDashboard();
+  //     }
+  //   });
+
+  //   super.initState();
+  // }
+
+  // void openDashboard() {
+  //   Provider.of<Userprovider>(context, listen: false).getUserDetails();
+  //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+  //     return const Homepagecntrl();
+  //   }));
+  // }
+
+  // void openLogin() {
+  //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+  //     return const LoginScreen();
+  //   }));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +75,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Email is Required ";
+                          }
+                          final emailRegex =
+                              RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
+                          if (!emailRegex.hasMatch(value)) {
+                            return 'Enter a valid email address';
                           }
                         },
                         decoration: const InputDecoration(
@@ -73,7 +111,28 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 10.0),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Passwordforgot()),
+                          );
+                        },
+                        child: Container(
+                          alignment: Alignment.topRight,
+                          child: const Text(
+                            "Forgot Password?",
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Poppins'),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 25.0),
                       Row(
                         children: [
                           Expanded(
@@ -87,16 +146,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                   if (userform.currentState!.validate()) {
                                     isloading = true;
                                     setState(() {});
-                                    // await LoginController.Login(
-                                    //     context: context,
-                                    //     email: emailInput.text,
-                                    //     password: passwordInput.text);
-                                    // isloading = false;
-                                    // setState(() {});
-                                    Navigator.pushReplacement(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return const Homepagecntrl();
-                                    }));
+                                    await LoginController.Login(
+                                        context: context,
+                                        email: emailInput.text,
+                                        password: passwordInput.text);
+                                    isloading = false;
+                                    setState(() {});
                                   }
                                 },
                                 child: isloading

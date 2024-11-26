@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "100008490107",
+    "project_id": "newshub-fab5f",
+    "storage_bucket": "newshub-fab5f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:100008490107:android:760fc4d6e0fad39587dede",
+        "android_client_info": {
+          "package_name": "com.dummyapps.new"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhPWOoC05l_TfifIrHZYlNaVnESQe-kmM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
