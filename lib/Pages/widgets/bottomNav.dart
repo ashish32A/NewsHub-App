@@ -9,7 +9,7 @@ class Bottomnav extends StatefulWidget {
   State<Bottomnav> createState() => _BottomnavState();
 }
 
-bool homes = true, category = false, profile = false;
+bool homes = true, category = false, setting = false;
 
 class _BottomnavState extends State<Bottomnav> {
   Bottomnavcontroller Controller = Get.put(Bottomnavcontroller());
@@ -39,7 +39,7 @@ class _BottomnavState extends State<Bottomnav> {
                     onTap: () {
                       homes = true;
                       category = false;
-                      profile = false;
+                      setting = false;
                       setState(() {});
                       Controller.index.value = 0;
                     },
@@ -62,7 +62,7 @@ class _BottomnavState extends State<Bottomnav> {
                     onTap: () {
                       homes = false;
                       category = true;
-                      profile = false;
+                      setting = false;
                       setState(() {});
                       Controller.index.value = 1;
                     },
@@ -85,7 +85,7 @@ class _BottomnavState extends State<Bottomnav> {
                     onTap: () {
                       homes = false;
                       category = false;
-                      profile = true;
+                      setting = true;
                       setState(() {});
                       Controller.index.value = 2;
                     },
@@ -94,13 +94,13 @@ class _BottomnavState extends State<Bottomnav> {
                       height: 40,
                       padding: const EdgeInsets.all(5),
                       decoration: BoxDecoration(
-                        color: profile ? Colors.blue[700] : Colors.transparent,
+                        color: setting ? Colors.blue[700] : Colors.transparent,
                         borderRadius: BorderRadius.circular(50),
                       ),
                       child: Icon(
-                        Icons.person_rounded,
+                        Icons.settings,
                         size: 25,
-                        color: profile ? Colors.white : Colors.grey[700],
+                        color: setting ? Colors.white : Colors.grey[700],
                       ),
                     ),
                   ),
