@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:newshub/Pages/LoginScreen.dart';
+import 'package:newshub/Pages/Profile.dart';
+import 'package:newshub/Pages/bookmarkButton.dart';
 import 'package:newshub/Pages/widgets/bottomNav.dart';
 
 class setting extends StatefulWidget {
@@ -34,45 +36,32 @@ class _settingState extends State<setting> {
                     Material(
                       elevation: 10.0,
                       borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                        margin: EdgeInsets.only(top: 15, bottom: 15),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: ListTile(
-                          leading: Container(
-                              width: 40,
-                              height: 40,
-                              padding: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Colors.blue),
-                              child: const Icon(Icons.person_rounded,
-                                  color: Colors.white)),
-                          title: const Text('Profile'),
-                          trailing: const Icon(Icons.arrow_forward_ios),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-
-                    Material(
-                      elevation: 10.0,
-                      borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                        margin: EdgeInsets.only(top: 15, bottom: 15),
-                        child: ListTile(
-                          leading: Container(
-                              width: 40,
-                              height: 40,
-                              padding: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Colors.blueGrey),
-                              child: const Icon(Icons.bookmark_border_rounded,
-                                  color: Colors.white)),
-                          title: const Text('Bookmark'),
-                          trailing: const Icon(Icons.arrow_forward_ios),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Profile()),
+                          );
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(top: 15, bottom: 15),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: ListTile(
+                            leading: Container(
+                                width: 40,
+                                height: 40,
+                                padding: const EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: Colors.blue),
+                                child: const Icon(Icons.person_rounded,
+                                    color: Colors.white)),
+                            title: const Text('Profile'),
+                            trailing: const Icon(Icons.arrow_forward_ios),
+                          ),
                         ),
                       ),
                     ),
@@ -81,23 +70,29 @@ class _settingState extends State<setting> {
                     Material(
                       elevation: 10.0,
                       borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                        margin: EdgeInsets.only(top: 15, bottom: 15),
-                        child: ListTile(
-                          leading: Container(
-                              width: 40,
-                              height: 40,
-                              padding: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Colors.blue),
-                              child: const Icon(
-                                Icons.contacts,
-                                color: Colors.white,
-                                size: 25,
-                              )),
-                          title: const Text('Contact Us'),
-                          trailing: const Icon(Icons.arrow_forward_ios),
+                      child: InkWell(
+                        onTap: () {
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => const Bookmark()),
+                          // );
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(top: 15, bottom: 15),
+                          child: ListTile(
+                            leading: Container(
+                                width: 40,
+                                height: 40,
+                                padding: const EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: Colors.blueGrey),
+                                child: const Icon(Icons.bookmark_border_rounded,
+                                    color: Colors.white)),
+                            title: const Text('Bookmark'),
+                            trailing: const Icon(Icons.arrow_forward_ios),
+                          ),
                         ),
                       ),
                     ),
@@ -106,20 +101,26 @@ class _settingState extends State<setting> {
                     Material(
                       elevation: 10.0,
                       borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                        margin: EdgeInsets.only(top: 15, bottom: 15),
-                        child: ListTile(
-                          leading: Container(
-                              width: 40,
-                              height: 40,
-                              padding: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Colors.red),
-                              child: const Icon(Icons.lock_outline_rounded,
-                                  color: Colors.white)),
-                          title: const Text('Privacy Policy'),
-                          trailing: const Icon(Icons.arrow_forward_ios),
+                      child: InkWell(
+                        onTap: () {},
+                        child: Container(
+                          margin: EdgeInsets.only(top: 15, bottom: 15),
+                          child: ListTile(
+                            leading: Container(
+                                width: 40,
+                                height: 40,
+                                padding: const EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: Colors.blue),
+                                child: const Icon(
+                                  Icons.contacts,
+                                  color: Colors.white,
+                                  size: 25,
+                                )),
+                            title: const Text('Contact Us'),
+                            trailing: const Icon(Icons.arrow_forward_ios),
+                          ),
                         ),
                       ),
                     ),
@@ -128,20 +129,48 @@ class _settingState extends State<setting> {
                     Material(
                       elevation: 10.0,
                       borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                        margin: EdgeInsets.only(top: 15, bottom: 15),
-                        child: ListTile(
-                          leading: Container(
-                              width: 40,
-                              height: 40,
-                              padding: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Colors.teal),
-                              child:
-                                  const Icon(Icons.info, color: Colors.white)),
-                          title: const Text('About Us'),
-                          trailing: const Icon(Icons.arrow_forward_ios),
+                      child: InkWell(
+                        onTap: () {},
+                        child: Container(
+                          margin: EdgeInsets.only(top: 15, bottom: 15),
+                          child: ListTile(
+                            leading: Container(
+                                width: 40,
+                                height: 40,
+                                padding: const EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: Colors.red),
+                                child: const Icon(Icons.lock_outline_rounded,
+                                    color: Colors.white)),
+                            title: const Text('Privacy Policy'),
+                            trailing: const Icon(Icons.arrow_forward_ios),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+
+                    Material(
+                      elevation: 10.0,
+                      borderRadius: BorderRadius.circular(10),
+                      child: InkWell(
+                        onTap: () {},
+                        child: Container(
+                          margin: EdgeInsets.only(top: 15, bottom: 15),
+                          child: ListTile(
+                            leading: Container(
+                                width: 40,
+                                height: 40,
+                                padding: const EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: Colors.teal),
+                                child: const Icon(Icons.info,
+                                    color: Colors.white)),
+                            title: const Text('About Us'),
+                            trailing: const Icon(Icons.arrow_forward_ios),
+                          ),
                         ),
                       ),
                     )

@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:newshub/Model/newsModel.dart';
 import 'package:newshub/Pages/articleView.dart';
+import 'package:newshub/Pages/bookmarkButton.dart';
 
 class Newsdetails extends StatefulWidget {
   final Newsmodel news;
@@ -12,6 +15,8 @@ class Newsdetails extends StatefulWidget {
 }
 
 class _NewsdetailsState extends State<Newsdetails> {
+  int randomNumber = 100000 + Random().nextInt(900000);
+
   @override
   Widget build(BuildContext context) {
     // Check if news is null or any key is missing
@@ -48,18 +53,15 @@ class _NewsdetailsState extends State<Newsdetails> {
                   const SizedBox(
                     width: 5.0,
                   ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.only(left: 10.0),
-                      child: Icon(
-                        Icons.bookmark_border_rounded,
-                        size: 28,
-                      ),
-                    ),
-                  ),
+                  BookmarkButton(
+                    newsId: randomNumber.toString(),
+                    newsTitle: widget.news.title!,
+                    newsImageUrl: widget.news.urlToImage,
+                    newsUrl: widget.news.url!,
+                    publishedAt: widget.news.publishedAt!,
+                    description: widget.news.description!,
+                    author: widget.news.author,
+                  )
                 ],
               ),
               const SizedBox(
