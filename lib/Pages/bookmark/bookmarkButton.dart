@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../Controller/bookmarkController.dart';
+import '../../Controller/bookmarkController.dart';
 
 class BookmarkButton extends StatefulWidget {
   final String newsId;

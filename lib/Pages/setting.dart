@@ -2,8 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:newshub/Pages/LoginScreen.dart';
 import 'package:newshub/Pages/Profile.dart';
-import 'package:newshub/Pages/bookmarkButton.dart';
+import 'package:newshub/Pages/widgets/PrivacyPolicy.dart';
 import 'package:newshub/Pages/widgets/bottomNav.dart';
+
+import 'bookmark/bookmark.dart';
+import 'widgets/AboutUs.dart';
 
 class setting extends StatefulWidget {
   const setting({super.key});
@@ -45,7 +48,7 @@ class _settingState extends State<setting> {
                           );
                         },
                         child: Container(
-                          margin: EdgeInsets.only(top: 15, bottom: 15),
+                          margin: const EdgeInsets.only(top: 15, bottom: 15),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                           ),
@@ -72,14 +75,14 @@ class _settingState extends State<setting> {
                       borderRadius: BorderRadius.circular(10),
                       child: InkWell(
                         onTap: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //       builder: (context) => const Bookmark()),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PersonalBookmarks()),
+                          );
                         },
                         child: Container(
-                          margin: EdgeInsets.only(top: 15, bottom: 15),
+                          margin: const EdgeInsets.only(top: 15, bottom: 15),
                           child: ListTile(
                             leading: Container(
                                 width: 40,
@@ -102,9 +105,31 @@ class _settingState extends State<setting> {
                       elevation: 10.0,
                       borderRadius: BorderRadius.circular(10),
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (context) {
+                                return SingleChildScrollView(
+                                  child: Container(
+                                    height: 500,
+                                    padding: const EdgeInsets.all(10),
+                                    child: const Column(
+                                      children: [
+                                        Center(
+                                            child: Text(
+                                          'Contact Us',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                        )),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              });
+                        },
                         child: Container(
-                          margin: EdgeInsets.only(top: 15, bottom: 15),
+                          margin: const EdgeInsets.only(top: 15, bottom: 15),
                           child: ListTile(
                             leading: Container(
                                 width: 40,
@@ -130,9 +155,15 @@ class _settingState extends State<setting> {
                       elevation: 10.0,
                       borderRadius: BorderRadius.circular(10),
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (context) {
+                                return PrivacyPolicyPage();
+                              });
+                        },
                         child: Container(
-                          margin: EdgeInsets.only(top: 15, bottom: 15),
+                          margin: const EdgeInsets.only(top: 15, bottom: 15),
                           child: ListTile(
                             leading: Container(
                                 width: 40,
@@ -143,7 +174,9 @@ class _settingState extends State<setting> {
                                     color: Colors.red),
                                 child: const Icon(Icons.lock_outline_rounded,
                                     color: Colors.white)),
-                            title: const Text('Privacy Policy'),
+                            title: const Text(
+                              'Privacy Policy',
+                            ),
                             trailing: const Icon(Icons.arrow_forward_ios),
                           ),
                         ),
@@ -155,9 +188,15 @@ class _settingState extends State<setting> {
                       elevation: 10.0,
                       borderRadius: BorderRadius.circular(10),
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (context) {
+                                return AboutUsPage();
+                              });
+                        },
                         child: Container(
-                          margin: EdgeInsets.only(top: 15, bottom: 15),
+                          margin: const EdgeInsets.only(top: 15, bottom: 15),
                           child: ListTile(
                             leading: Container(
                                 width: 40,

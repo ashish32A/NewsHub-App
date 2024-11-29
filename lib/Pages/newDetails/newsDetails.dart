@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:newshub/Model/newsModel.dart';
 import 'package:newshub/Pages/articleView.dart';
-import 'package:newshub/Pages/bookmarkButton.dart';
+import 'package:newshub/Pages/bookmark/bookmarkButton.dart';
 
 class Newsdetails extends StatefulWidget {
   final Newsmodel news;

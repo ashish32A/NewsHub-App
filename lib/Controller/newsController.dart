@@ -39,10 +39,11 @@ class Newscontroller extends GetxController {
     isTrendingLoading.value = false;
   }
 
+
   Future<void> getNewsForyou() async {
     isNewsForyouLoading.value = true;
     var baseUrl =
-        "https://newsapi.org/v2/everything?q=apple&from=2024-11-25&to=2024-11-25&sortBy=popularity&apiKey=77e1dcb3c1d04dc8b607128688e697a2";
+        "https://newsapi.org/v2/everything?q=apple&from=2024-11-27&to=2024-11-27&sortBy=popularity&apiKey=77e1dcb3c1d04dc8b607128688e697a2";
     try {
       var response = await http.get(Uri.parse(baseUrl));
       if (response.statusCode == 200) {
