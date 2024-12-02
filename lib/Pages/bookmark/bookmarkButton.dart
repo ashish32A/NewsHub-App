@@ -16,7 +16,8 @@ class BookmarkButton extends StatefulWidget {
     required this.newsImageUrl,
     required this.newsUrl,
     required this.publishedAt,
-    required this.description, this.author,
+    required this.description,
+    this.author,
   });
 
   @override
@@ -55,7 +56,11 @@ class _BookmarkButtonState extends State<BookmarkButton> {
           imageUrl: widget.newsImageUrl,
           newsUrl: widget.newsUrl,
           publishedAt: widget.publishedAt,
-          description: widget.description, author: widget.author,
+          description: widget.description,
+          author: widget.author,
+        );
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("News Bookmarked")),
         );
       }
       setState(() {
@@ -71,7 +76,8 @@ class _BookmarkButtonState extends State<BookmarkButton> {
     return IconButton(
       icon: Icon(
         isBookmarked ? Icons.bookmark : Icons.bookmark_border,
-        color: isBookmarked ? Colors.blue : Colors.grey,size: 28,
+        color: isBookmarked ? Colors.blue : Colors.grey,
+        size: 28,
       ),
       onPressed: _toggleBookmark,
     );

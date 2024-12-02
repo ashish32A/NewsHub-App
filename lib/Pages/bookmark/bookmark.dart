@@ -1,4 +1,8 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:newshub/Pages/bookmark/bookmarkTile.dart';
+
 
 import '../../Controller/bookmarkController.dart';
 
@@ -29,24 +33,20 @@ class PersonalBookmarks extends StatelessWidget {
             return Center(child: Text('No bookmarks yet.'));
           }
 
-          return ListView.builder(
-            itemCount: bookmarks.length,
-            itemBuilder: (context, index) {
-              final bookmark = bookmarks[index];
-              return ListTile(
-                leading: bookmark['imageUrl'] != null
-                    ? Image.network(bookmark['imageUrl'],
-                        width: 50, height: 50, fit: BoxFit.cover)
-                    : Icon(Icons.image_not_supported),
-                title: Text(bookmark['title']),
-                subtitle: Text(bookmark['description']),
-                onTap: () {
-                  // Open news URL in a browser
-                  final url = bookmark['newsUrl'];
-                  // Use URL launcher or any other navigation logic
-                },
-              );
-            },
+          return Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ListView.builder(
+              itemCount: bookmarks.length,
+              itemBuilder: (context, index) {
+                final bookmark = bookmarks[index];
+                return Bookmarktile(
+                    imageUrl: bookmark['imageUrl'] ??
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQsq1NacYKHKS-RudSBgbLZa_ndkD-lmmQfA&s",
+                    time: bookmark['publishedAt'] ?? '',
+                    title: bookmark['title'] ?? 'unknown',
+                    author: bookmark['author'] ?? 'unknown');
+              },
+            ),
           );
         },
       ),

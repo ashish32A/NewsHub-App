@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:newshub/Pages/widgets/contactUs.dart';
 import 'package:newshub/Pages/LoginScreen.dart';
 import 'package:newshub/Pages/Profile.dart';
 import 'package:newshub/Pages/widgets/PrivacyPolicy.dart';
@@ -109,23 +110,7 @@ class _settingState extends State<setting> {
                           showModalBottomSheet(
                               context: context,
                               builder: (context) {
-                                return SingleChildScrollView(
-                                  child: Container(
-                                    height: 500,
-                                    padding: const EdgeInsets.all(10),
-                                    child: const Column(
-                                      children: [
-                                        Center(
-                                            child: Text(
-                                          'Contact Us',
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold),
-                                        )),
-                                      ],
-                                    ),
-                                  ),
-                                );
+                                return ContactUsPage();
                               });
                         },
                         child: Container(

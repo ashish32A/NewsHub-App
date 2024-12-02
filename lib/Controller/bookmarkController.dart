@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+
+
 class BookmarkController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+ 
 
   /// Add a news item to the user's bookmarks
   Future<void> addBookmark({
@@ -32,7 +35,7 @@ class BookmarkController {
       'title': title,
       'imageUrl': imageUrl,
       'newsUrl': newsUrl,
-      'author':author,
+      'author': author,
       'publishedAt': publishedAt,
       'description': description,
       'timestamp': FieldValue.serverTimestamp(),
