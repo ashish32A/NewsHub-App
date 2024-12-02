@@ -1,8 +1,6 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:newshub/Pages/bookmark/bookmarkTile.dart';
-
+import 'package:newshub/Pages/bookmark/bootmarkdetail.dart';
 
 import '../../Controller/bookmarkController.dart';
 
@@ -40,11 +38,30 @@ class PersonalBookmarks extends StatelessWidget {
               itemBuilder: (context, index) {
                 final bookmark = bookmarks[index];
                 return Bookmarktile(
-                    imageUrl: bookmark['imageUrl'] ??
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQsq1NacYKHKS-RudSBgbLZa_ndkD-lmmQfA&s",
-                    time: bookmark['publishedAt'] ?? '',
-                    title: bookmark['title'] ?? 'unknown',
-                    author: bookmark['author'] ?? 'unknown');
+                  imageUrl: bookmark['imageUrl'] ??
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQsq1NacYKHKS-RudSBgbLZa_ndkD-lmmQfA&s",
+                  time: bookmark['publishedAt'] ?? '',
+                  title: bookmark['title'] ?? 'unknown',
+                  author: bookmark['author'] ?? 'unknown',
+                  ontap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Bootmarkdetail(
+                          newsTitle: bookmark['title'] ?? "unknown",
+                          newsUrl: bookmark["newsUrl"] ?? "",
+                          publishedAt: bookmark['publishedAt'] ?? "unknown",
+                          description:
+                              bookmark["description"] ?? "No description",
+                          newsImageUrl: bookmark['imageUrl'] ??
+                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQsq1NacYKHKS-RudSBgbLZa_ndkD-lmmQfA&s",
+                          author: bookmark['author'] ?? "unknown",
+                          newsId: bookmark['newsId'],
+                        ),
+                      ),
+                    );
+                  },
+                );
               },
             ),
           );

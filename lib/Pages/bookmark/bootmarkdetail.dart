@@ -1,33 +1,35 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:newshub/Model/newsModel.dart';
 import 'package:newshub/Pages/articleView.dart';
-import 'package:newshub/Pages/bookmark/bookmarkButton.dart';
+
+import '../../Controller/bookmarkController.dart';
 
 class Bootmarkdetail extends StatefulWidget {
-  final Newsmodel news;
-  const Bootmarkdetail({super.key, required this.news});
+  final String newsTitle;
+  final dynamic newsImageUrl;
+  final dynamic author;
+  final String newsUrl;
+  final String newsId;
+  final String publishedAt;
+  final String description;
+  const Bootmarkdetail(
+      {super.key,
+      required this.newsTitle,
+      required this.newsImageUrl,
+      required this.author,
+      required this.newsUrl,
+      required this.publishedAt,
+      required this.description,
+      required this.newsId});
 
   @override
   State<Bootmarkdetail> createState() => _BootmarkdetailState();
 }
 
 class _BootmarkdetailState extends State<Bootmarkdetail> {
-  int randomNumber = 100000 + Random().nextInt(900000);
-
+  final BookmarkController bookmarkController = BookmarkController();
   @override
   Widget build(BuildContext context) {
-    // Check if news is null or any key is missing
-    // ignore: unnecessary_null_comparison
-    if (widget.news == null) {
-      return Scaffold(
-        appBar: AppBar(title: const Text("Error")),
-        body: const Center(child: Text("News details are not available")),
-      );
-    }
-
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -53,15 +55,22 @@ class _BootmarkdetailState extends State<Bootmarkdetail> {
                   const SizedBox(
                     width: 5.0,
                   ),
-                  BookmarkButton(
-                    newsId: randomNumber.toString(),
-                    newsTitle: widget.news.title!,
-                    newsImageUrl: widget.news.urlToImage,
-                    newsUrl: widget.news.url!,
-                    publishedAt: widget.news.publishedAt!,
-                    description: widget.news.description!,
-                    author: widget.news.author,
-                  )
+                  InkWell(
+                    onTap: () {
+                      bookmarkController.removeBookmark(widget.newsId);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Deleted Bookmarked")),
+                      );
+                      Navigator.pop(context);
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 10.0),
+                      child: Icon(
+                        Icons.delete_outline_rounded,
+                        size: 25,
+                      ),
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(
@@ -78,7 +87,7 @@ class _BootmarkdetailState extends State<Bootmarkdetail> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
                         child: Image.network(
-                          widget.news.urlToImage ??
+                          widget.newsImageUrl ??
                               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQsq1NacYKHKS-RudSBgbLZa_ndkD-lmmQfA&s",
                           fit: BoxFit.cover,
                         ),
@@ -91,7 +100,7 @@ class _BootmarkdetailState extends State<Bootmarkdetail> {
                 height: 20,
               ),
               Text(
-                widget.news.title!,
+                widget.newsTitle,
                 style:
                     const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
@@ -104,9 +113,8 @@ class _BootmarkdetailState extends State<Bootmarkdetail> {
                     radius: 15,
                     backgroundColor: Colors.blue[700],
                     child: Text(
-                      widget.news.author != null &&
-                              widget.news.author!.isNotEmpty
-                          ? widget.news.author![0]
+                      widget.author != null && widget.author!.isNotEmpty
+                          ? widget.author![0]
                           : '?',
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, color: Colors.white),
@@ -117,7 +125,7 @@ class _BootmarkdetailState extends State<Bootmarkdetail> {
                   ),
                   Flexible(
                     child: Text(
-                      widget.news.author ?? "Unknown",
+                      widget.author ?? "Unknown",
                       style: TextStyle(
                           fontSize: 15,
                           color: Colors.grey[800],
@@ -131,7 +139,7 @@ class _BootmarkdetailState extends State<Bootmarkdetail> {
                 height: 20.0,
               ),
               Text(
-                widget.news.description ?? "no desciption",
+                widget.description,
                 style: TextStyle(fontSize: 18, color: Colors.grey[800]),
               ),
               const SizedBox(height: 20.0),
@@ -139,7 +147,7 @@ class _BootmarkdetailState extends State<Bootmarkdetail> {
                 onPressed: () {
                   navigator!
                       .pushReplacement(MaterialPageRoute(builder: (context) {
-                    return ArticleVeiw(blogUrl: widget.news.url!);
+                    return ArticleVeiw(blogUrl: widget.newsUrl!);
                   }));
                 },
                 style: ElevatedButton.styleFrom(

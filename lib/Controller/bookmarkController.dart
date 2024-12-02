@@ -76,6 +76,7 @@ class BookmarkController {
 
     return doc.exists;
   }
+ 
 
   /// Get the user's bookmarks
   Stream<List<Map<String, dynamic>>> getUserBookmarks() {

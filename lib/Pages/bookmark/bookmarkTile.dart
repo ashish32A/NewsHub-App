@@ -5,15 +5,14 @@ class Bookmarktile extends StatefulWidget {
   final String time;
   final String title;
   final String author;
-  // final VoidCallback ontap;
+  final VoidCallback ontap;
   const Bookmarktile(
       {super.key,
       required this.imageUrl,
       required this.time,
       required this.title,
-      required this.author
-      // required this.ontap
-      });
+      required this.author,
+      required this.ontap});
 
   @override
   State<Bookmarktile> createState() => _BookmarktileState();
@@ -25,7 +24,7 @@ class _BookmarktileState extends State<Bookmarktile> {
     return Column(
       children: [
         InkWell(
-          // onTap: widget.ontap,
+          onTap: widget.ontap,
           child: Container(
             height: 150.0,
             padding: const EdgeInsets.all(10),

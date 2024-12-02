@@ -107,11 +107,11 @@ class _settingState extends State<setting> {
                       borderRadius: BorderRadius.circular(10),
                       child: InkWell(
                         onTap: () {
-                          showModalBottomSheet(
-                              context: context,
-                              builder: (context) {
-                                return ContactUsPage();
-                              });
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ContactUsPage()),
+                          );
                         },
                         child: Container(
                           margin: const EdgeInsets.only(top: 15, bottom: 15),
