@@ -12,7 +12,11 @@ class PersonalBookmarks extends StatelessWidget {
     return Scaffold(
       // Add a Scaffold here
       appBar: AppBar(
-        title: Text('My Bookmarks'),
+        centerTitle: true,
+        title: const Text(
+          'My Bookmarked',
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
       ),
       body: StreamBuilder<List<Map<String, dynamic>>>(
         stream: _bookmarkController.getUserBookmarks(),

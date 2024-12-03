@@ -2,9 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:newshub/Pages/widgets/contactUs.dart';
 import 'package:newshub/Pages/LoginScreen.dart';
-import 'package:newshub/Pages/Profile.dart';
 import 'package:newshub/Pages/widgets/PrivacyPolicy.dart';
 import 'package:newshub/Pages/widgets/bottomNav.dart';
+import 'package:newshub/Pages/widgets/profilePage.dart';
 
 import 'bookmark/bookmark.dart';
 import 'widgets/AboutUs.dart';
@@ -45,7 +45,7 @@ class _settingState extends State<setting> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const Profile()),
+                                builder: (context) => ProfilePage()),
                           );
                         },
                         child: Container(
@@ -141,11 +141,11 @@ class _settingState extends State<setting> {
                       borderRadius: BorderRadius.circular(10),
                       child: InkWell(
                         onTap: () {
-                          showModalBottomSheet(
-                              context: context,
-                              builder: (context) {
-                                return PrivacyPolicyPage();
-                              });
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PrivacyPolicyPage()),
+                          );
                         },
                         child: Container(
                           margin: const EdgeInsets.only(top: 15, bottom: 15),
@@ -174,11 +174,11 @@ class _settingState extends State<setting> {
                       borderRadius: BorderRadius.circular(10),
                       child: InkWell(
                         onTap: () {
-                          showModalBottomSheet(
-                              context: context,
-                              builder: (context) {
-                                return AboutUsPage();
-                              });
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AboutUsPage()),
+                          );
                         },
                         child: Container(
                           margin: const EdgeInsets.only(top: 15, bottom: 15),
