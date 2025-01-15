@@ -2,10 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:newshub/Controller/Login_Controller.dart';
-import 'package:newshub/Controller/homePageCntrl.dart';
 import 'package:newshub/Pages/passForgot.dart';
-import 'package:provider/provider.dart';
-import '../Providers/UseProvider.dart';
 import 'SigupScreen.dart';
 
 class LoginScreen extends StatefulWidget {
