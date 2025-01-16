@@ -42,7 +42,7 @@ class Newscontroller extends GetxController {
   Future<void> getNewsForyou() async {
     isNewsForyouLoading.value = true;
     var baseUrl =
-        "https://newsapi.org/v2/everything?q=apple&from=2024-12-02&to=2024-12-04&sortBy=popularity&apiKey=77e1dcb3c1d04dc8b607128688e697a2";
+        "https://newsapi.org/v2/everything?q=apple&from=2025-01-15&to=2025-01-15&sortBy=popularity&apiKey=77e1dcb3c1d04dc8b607128688e697a2";
     try {
       var response = await http.get(Uri.parse(baseUrl));
       if (response.statusCode == 200) {
