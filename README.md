@@ -66,7 +66,5 @@ NewsHub is a cutting-edge mobile application designed to simplify news consumpti
 4. Push to the branch (`git push origin feature-branch`).
 5. Open a Pull Request.
 
-## 📜 License
-This project is licensed under the MIT License.
 
 
