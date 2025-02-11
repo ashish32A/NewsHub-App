@@ -59,12 +59,7 @@ NewsHub is a cutting-edge mobile application designed to simplify news consumpti
 
 
 
-## 🤝 Contributing
-1. Fork the repository.
-2. Create a new branch (`feature-branch`).
-3. Commit changes (`git commit -m "Added new feature"`).
-4. Push to the branch (`git push origin feature-branch`).
-5. Open a Pull Request.
+
 
 
 
